@@ -23,6 +23,3 @@ If you would like to contribute to the project or report issues, feel free to cr
 
 Before running the script, make sure to install the required dependencies:
 
-```bash
-pip install beautifulsoup4 openpyxl requests
-
