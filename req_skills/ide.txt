@@ -1,0 +1,8 @@
+Integrated Development Environments
+IDE
+IDEs
+Visual Studio Code
+IntelliJ IDEA
+Eclipse
+PyCharm
+Atom

@@ -1,0 +1,4 @@
+Scripting
+Shell scripting
+Bash
+PowerShell
