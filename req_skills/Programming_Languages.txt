@@ -4,6 +4,7 @@ JavaScript
 Java
 C++
 C#
+C
 Ruby
 Swift
 Kotlin

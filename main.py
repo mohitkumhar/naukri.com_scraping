@@ -3,9 +3,9 @@
 # from bs4 import BeautifulSoup
 # import time
 # import pandas as pd
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
-# for i in range(1, 2):
+# for i in range(1, 3):
 #     url = f'https://www.naukri.com/computer-science-jobs-{i}'
 
 #     chrome_options = Options()
@@ -33,19 +33,19 @@
 #         for data in soup.findAll('div', class_='cust-job-tuple layout-wrapper lay-2 sjw__tuple'):
 #             title = data.find('div', class_='row1')
 #             company_name = data.find('span', class_='comp-dtls-wrap')
+#             skill = ', '.join(tag.text.strip() for tag in data.select('ul.tags-gt li.tag-li'))
 #             location = data.find('span', class_='loc-wrap ver-line')
 #             experience = data.find('span', class_='ni-job-tuple-icon ni-job-tuple-icon-srp-experience exp')
 #             salary = data.find('span', class_='ni-job-tuple-icon ni-job-tuple-icon-srp-rupee sal')
-#             skill = ', '.join(tag.text.strip() for tag in data.select('ul.tags-gt li.tag-li'))
 #             desc = data.find('div', class_='row4')
 
 
 #             titles.append(title.text.strip() if title else None)
 #             companies.append(company_name.text.strip() if company_name else None)
+#             skills.append(skill)
 #             locations.append(location.text.strip() if location else None)
 #             experiences.append(experience.text.strip() if experience else None)
 #             salaries.append(salary.text.strip() if salary else None)
-#             skills.append(skill)
 #             job_desc.append(desc.text.strip() if desc else None)
             
 #         print(f"{i} is Executed")
@@ -54,23 +54,19 @@
 #         driver.quit()
 
 
-# # df = pd.DataFrame({'Title': titles, 'Companies': companies, 'Location': locations, 'experience': experiences,'salary': salaries, 'Description': job_desc})
+# df = pd.DataFrame({'Title': titles, 'Companies': companies, 'Skills': skills, 'Location': locations, 'experience': experiences,'salary': salaries, 'Description': job_desc})
 
-# # df.to_excel('Naukricom.xlsx', index=True)
+# df.to_excel('Naukricom.xlsx', index=True)
 
 
 # # print(job_desc)
 # # print(companies)
+# print(skills)
 # # print(locations)
 # # print(experience)
 # # print(salaries)
 # # print(job_desc)
 
-# print(skills)
-
-# programming_skills = []
-# web_development_skills = []
-# database_development_skills = []
 
 
 
@@ -152,5 +148,53 @@ game_development_skills = [skill.strip() for skill in all_game_development_skill
 with open ('req_skills/design.txt') as c:
     all_design_skills = c.readlines()
 design_skills = [skill.strip() for skill in all_design_skills if skill.strip()]
-print(design_skills)
+# print(design_skills)
 
+with open ('req_skills/networking.txt') as c:
+    all_networking_skills = c.readlines()
+networking_skills = [skill.strip() for skill in all_networking_skills if skill.strip()]
+# print(networking_skills)
+
+with open ('req_skills/os.txt') as c:
+    all_os_skills = c.readlines()
+os_skills = [skill.strip() for skill in all_os_skills if skill.strip()]
+# print(os_skills)
+
+with open ('req_skills/collaboration_tools.txt') as c:
+    all_collaboration_tools_skills = c.readlines()
+collaboration_tools_skills = [skill.strip() for skill in all_collaboration_tools_skills if skill.strip()]
+# print(collaboration_tools_skills)
+
+with open ('req_skills/soft_skill.txt') as c:
+    all_soft_skills = c.readlines()
+soft_skills = [skill.strip() for skill in all_soft_skills if skill.strip()]
+# print(soft_skills)
+
+
+
+
+
+all_skills  = programming_skills + web_development_skills + database_development_skills + version_control_skills + ide_skill + devops_skills + testing_skill + api_skill + framework_skills + android_development_skills + scripting_skills + dsa_skills + security_skill + ai_machine_lerning + game_development_skills + design_skills + networking_skills + os_skills + collaboration_tools_skills + soft_skills
+print(all_skills)
+
+
+skills = ['C' ,'Programming', 'Java', 'C++', 'Ca', 'Algorithms', 'Artificial Intelligence', 'Machine Learning', 'Phd']
+
+programming_pie = [programming_skills.count(skill) for skill in skills]
+print(programming_pie)
+
+non_zero_index = [i for i, count in enumerate(programming_pie) if count > 0]
+print(non_zero_index)
+
+filter_programming_pie = [programming_pie[i] for i in non_zero_index]
+print(filter_programming_pie)
+
+main_programming_skills = [skills[skill] for skill in non_zero_index]
+print(main_programming_skills)
+
+plt.pie(filter_programming_pie, labels=main_programming_skills, autopct='%1.1f%%')
+plt.title('')
+plt.show()
+
+plt.pie(filter_programming_pie, labels=main_programming_skills)
+plt.show()
