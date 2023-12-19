@@ -4,6 +4,7 @@
 # import time
 # import pandas as pd
 import matplotlib.pyplot as plt
+import io
 
 # for i in range(1, 3):
 #     url = f'https://www.naukri.com/computer-science-jobs-{i}'
@@ -61,7 +62,7 @@ import matplotlib.pyplot as plt
 
 # # print(job_desc)
 # # print(companies)
-# print(skills)
+# # print(skills)
 # # print(locations)
 # # print(experience)
 # # print(salaries)
@@ -177,8 +178,8 @@ soft_skills = [skill.strip() for skill in all_soft_skills if skill.strip()]
 all_skills  = programming_skills + web_development_skills + database_development_skills + version_control_skills + ide_skill + devops_skills + testing_skill + api_skill + framework_skills + android_development_skills + scripting_skills + dsa_skills + security_skill + ai_machine_lerning + game_development_skills + design_skills + networking_skills + os_skills + collaboration_tools_skills + soft_skills
 print(all_skills)
 
+skills = ['C' ,'Programming', 'Java', 'C++', 'Ca', 'C', 'Artificial Intelligence', 'Machine Learning', 'C']
 
-skills = ['C' ,'Programming', 'Java', 'C++', 'Ca', 'Algorithms', 'Artificial Intelligence', 'Machine Learning', 'Phd']
 
 programming_pie = [programming_skills.count(skill) for skill in skills]
 print(programming_pie)
@@ -186,15 +187,45 @@ print(programming_pie)
 non_zero_index = [i for i, count in enumerate(programming_pie) if count > 0]
 print(non_zero_index)
 
-filter_programming_pie = [programming_pie[i] for i in non_zero_index]
-print(filter_programming_pie)
+label = [skills[skill] for skill in non_zero_index]
+print(label)
 
-main_programming_skills = [skills[skill] for skill in non_zero_index]
-print(main_programming_skills)
+skill_count = {}
+for language in label:
+    skill_count[language] = skill_count.get(language, 0) + 1
+print(skill_count)
 
-plt.pie(filter_programming_pie, labels=main_programming_skills, autopct='%1.1f%%')
-plt.title('')
-plt.show()
+pie_content = []
 
-plt.pie(filter_programming_pie, labels=main_programming_skills)
-plt.show()
+
+for i in skill_count:
+    pie_content.append(skill_count.get(i))
+print(pie_content)
+
+dark_colors = [
+    'steelblue', 'darkorange', 'darkgreen', 'firebrick',
+    'rebeccapurple', 'saddlebrown', 'mediumvioletred', 'dimgray',
+    'darkolivegreen', 'teal', 'slateblue', 'coral',
+    'teal', 'purple', 'teal', 'darkred',
+    'hotpink', 'green', 'saddlebrown', 'slategray'
+    ]
+color = []
+
+for i in range(0, len(pie_content)):
+    color.append(dark_colors[i])
+print(f"colors: {color}")
+
+explodes = [0, 0.1, 0, 0, 0, 0, 0.2, 0, 0]
+explode=[]
+
+for i in range(0, len(pie_content)):
+    explode.append(explodes[i])
+
+print(explode)
+
+plt.title("Programming Chart", fontdict={'size':26})
+plt.pie(pie_content, labels=set(label), autopct='%1.1f%%', colors=color, shadow=True, labeldistance=1.1, startangle=140, radius=1.2, explode = (0, 0.1, 0))
+plt.axis('equal')
+plt.savefig("programming.jpg", dpi=250)
+# plt.show()
+
